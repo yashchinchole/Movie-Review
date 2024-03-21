@@ -4,7 +4,7 @@ This project is a simple movie review website that allows users to search for mo
 
 ## Live Demo
 
-You can play the Simon Game online by visiting the following link:
+You can experience the live demo by visiting the following link:
 [Movie Review](https://yashchinchole.github.io/Movie-Review/)
 
 ## Technologies Used
