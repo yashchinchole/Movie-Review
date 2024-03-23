@@ -7,9 +7,9 @@ const SEARCH_API =
   'https://api.themoviedb.org/3/search/movie?api_key=e4534028c24f38be074511f0bb535db7&query="';
 
 // Getting DOM elements to script
-const form = document.getElementById("form");
-const search = document.getElementById("search");
-const main = document.getElementById("main");
+const form = $("#form");
+const search = $("#search");
+const main = $("#main");
 
 // calling the getMovies function
 getMovies(API_URL);
@@ -23,17 +23,17 @@ async function getMovies(url) {
 }
 
 // addeded a eventListener to form, so that whenever it gets submitted certain things happens
-form.addEventListener("submit", (e) => {
+form.on("submit", (e) => {
   // The preventDefault() method cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
   e.preventDefault();
 
-  const searchTerm = search.value;
+  const searchTerm = search.val();
   // Certain checks before passing it to the api
 
   if (searchTerm && searchTerm !== "") {
     // calling the api with search_api url and given searchTerm
     getMovies(SEARCH_API + searchTerm);
-    search.value = "";
+    search.val("");
   } else {
     window.location.reload();
   }
@@ -52,27 +52,27 @@ function getClassByRate(vote) {
 
 function showMovies(movies) {
   // It will empty the main div with each function call
-  main.innerHTML = "  ";
+  main.html("");
   // traversing the movies using forEach loop
   movies.forEach((movie) => {
     // Destructring the data and keeping only what we need
     const { title, poster_path, vote_average, overview } = movie;
     // creating a div
-    const movieElement = document.createElement("div");
-    // adding class of 'movie' to the above created div
-    movieElement.classList.add("movie");
-    // adding data to the above create div with class 'movie'
-    movieElement.innerHTML = `
-        <img src="${IMG_PATH + poster_path}" alt="${title}" />
-        <div class="movie-info">
-            <h3>${title}</h3>
-            <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+    const movieElement = $(`
+        <div class="movie">
+            <img src="${IMG_PATH + poster_path}" alt="${title}" />
+            <div class="movie-info">
+                <h3>${title}</h3>
+                <span class="${getClassByRate(
+                  vote_average
+                )}">${vote_average}</span>
+            </div>
+            <div class="overview">
+                <h3>Overview</h3>
+                ${overview}
+            </div>
         </div>
-        <div class="overview">
-            <h3>Overview</h3>
-           ${overview}
-        </div>
-        `;
+    `);
     // appending it so that it gets reflected on the fronpage
     main.append(movieElement);
   });
