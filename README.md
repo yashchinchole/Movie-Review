@@ -1,5 +1,7 @@
 # Movie Review Website
 
+![](https://visitor-badge.laobi.icu/badge?page_id=yashchinchole/Movie-Review)
+
 This project is a simple movie review website that allows users to search for movies and view their details, including ratings and overviews.
 
 ## Live Demo
